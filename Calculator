@@ -1,0 +1,56 @@
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    if y == 0:
+        return "Error: Cannot divide by zero"
+    return x / y
+
+def get_number(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+def main():
+    print("\nWelcome to Your Custom Calculator!")
+    print("Operations:")
+    print("  add       → Addition")
+    print("  subtract  → Subtraction")
+    print("  multiply  → Multiplication")
+    print("  divide    → Division")
+
+    operations = {
+        "add": add,
+        "subtract": subtract,
+        "multiply": multiply,
+        "divide": divide
+    }
+
+    while True:
+        choice = input("\nEnter operation name (add/subtract/multiply/divide): ").lower()
+        
+        if choice not in operations:
+            print("Invalid operation. Try again.")
+            continue
+
+        num1 = get_number("Enter the first number: ")
+        num2 = get_number("Enter the second number: ")
+
+        result = operations[choice](num1, num2)
+        print(f"Result: {result}")
+
+        again = input("Would you like to perform another calculation? (yes/no): ").strip().lower()
+        if again != 'yes':
+            print("Goodbye! Thanks for using your calculator .")
+            break
+
+if __name__ == "__main__":
+    main()
